@@ -10,10 +10,10 @@ def get_env_vars(self, NAME:str) -> dict:
     user = aws_ssm.StringParameter.value_for_string_parameter(
         self, "SFTP_NBIN_USER")
     host_url = aws_ssm.StringParameter.value_for_string_parameter(
-        self, "STFP_NBIN_HOST")
+        self, "SFTP_NBIN_HOST")
     password = aws_ssm.StringParameter.value_for_string_parameter(
         self, "SFTP_NBIN_PASSWORD")
-
+    
     return {
         # "KEY_ID": access_key, 
         # "ACCESS_KEY": secret_access_key,

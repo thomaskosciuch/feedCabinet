@@ -1,10 +1,10 @@
 import boto3
 
-def get_s3_files(bucket_name):
+def get_s3_files(bucket_name:str) -> list[str]:
 
     s3 = boto3.client('s3')
     kwargs = {
-        'Prefix':'ftp/raw',
+        'Prefix':'ftp',
         'Bucket': bucket_name
     }
     
@@ -20,6 +20,9 @@ def get_s3_files(bucket_name):
         if not continuation_token:
             break        
     return file_names
+
+def put_s3_file(bucket_name:str, filename:str) -> None:
+    pass
 
 if __name__ == '__main__':
     file_names = get_s3_files('qnext.custodian.nbin')
