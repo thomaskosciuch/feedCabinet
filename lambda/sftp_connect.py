@@ -7,6 +7,10 @@ def sftp_connect() -> pysftp.Connection:
     hostname = environ['STFP_NBIN_HOST']
     username = environ["SFTP_NBIN_USER"]
     password = environ["SFTP_NBIN_PASSWORD"]
+    
+    username = 'ETFCM'
+    hostname = 'sftp.corrnet.com'
+    password = 'wijf&XjD!&jabf'
 
     cnopts = pysftp.CnOpts()
     cnopts.hostkeys = None
