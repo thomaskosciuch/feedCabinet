@@ -4,7 +4,7 @@ from os import environ
 
 def sftp_connect() -> pysftp.Connection:
 
-    hostname = environ['STFP_NBIN_HOST']
+    hostname = environ['SFTP_NBIN_HOST']
     username = environ["SFTP_NBIN_USER"]
     password = environ["SFTP_NBIN_PASSWORD"]
 
