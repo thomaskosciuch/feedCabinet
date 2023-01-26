@@ -36,7 +36,7 @@ def handler(event, context):
                 with sftp_paramiko.open(f'{folder_name}/{file.sftp_name}', "r") as io_file:
                     io_file.prefetch()
                     s3 = boto3.client('s3')
-                    s3.put_object(Body=io_file, Bucket=bucket_name, Key=f'ftp/raw/{file.s3_name}')
+                    s3.put_object(Body=io_file, Bucket=bucket_name, Key=f'{file.s3_name}')
                 success += [str(file)]
             except:
                 failed += (str(file))

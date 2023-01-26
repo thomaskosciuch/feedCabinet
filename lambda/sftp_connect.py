@@ -3,7 +3,7 @@ import pysftp
 from paramiko import SFTPClient, Transport
 from os import environ
 
-hostname = environ['SFTP_NBIN_HOST']
+hostname = environ['STFP_NBIN_HOST']
 username = environ["SFTP_NBIN_USER"]
 password = environ["SFTP_NBIN_PASSWORD"]
 
