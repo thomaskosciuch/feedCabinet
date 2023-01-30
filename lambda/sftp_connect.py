@@ -3,7 +3,7 @@ import pysftp
 from paramiko import SFTPClient, Transport
 from os import environ
 
-hostname = environ['STFP_NBIN_HOST']
+hostname = environ['SFTP_NBIN_HOST']
 username = environ["SFTP_NBIN_USER"]
 password = environ["SFTP_NBIN_PASSWORD"]
 
@@ -18,6 +18,10 @@ class SftpS3File():
     def __init__(self, sftp_name:str, s3_name:str):
         self.sftp_name: str = sftp_name
         self.s3_name: str = s3_name
+
+    hostname = environ['SFTP_NBIN_HOST']
+    username = environ["SFTP_NBIN_USER"]
+    password = environ["SFTP_NBIN_PASSWORD"]
 
 def sftp_connect() -> pysftp.Connection:
     cnopts = pysftp.CnOpts()
