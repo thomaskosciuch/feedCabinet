@@ -4,11 +4,15 @@ aws-cdk.asset-awscli-v1==2.2.49
 aws-cdk.asset-kubectl-v20==2.1.1
 aws-cdk.asset-node-proxy-agent-v5==2.0.38
 bcrypt==4.0.1
+boto3==1.26.56
+botocore==1.29.56
 cattrs==22.2.0
+certifi==2022.12.7
 cffi==1.15.1
 constructs==10.1.229
 cryptography==39.0.0
 exceptiongroup==1.1.0
+jmespath==1.0.1
 jsii==1.73.0
 paramiko==3.0.0
 publication==0.0.3
@@ -16,6 +20,9 @@ pycparser==2.21
 PyNaCl==1.5.0
 pysftp==0.2.9
 python-dateutil==2.8.2
+s3transfer==0.6.0
+sentry-sdk==1.14.0
 six==1.16.0
 typeguard==2.13.3
 typing_extensions==4.4.0
+urllib3==1.26.14

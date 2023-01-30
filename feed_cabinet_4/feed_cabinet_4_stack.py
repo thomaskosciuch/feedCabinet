@@ -6,6 +6,7 @@ from aws_cdk import (
     aws_events_targets,
     aws_events,
     aws_lambda,
+    aws_cloudwatch
 )
 from feed_cabinet_4.env_vars import get_env_vars
 
@@ -36,12 +37,27 @@ class FeedCabinet4Stack(Stack):
                     ],
                 )
             ),
-            timeout=Duration.minutes(1),
+            timeout=Duration.minutes(10),
             environment=get_env_vars(self, NAME),
-            handler='main.handler',
-        )
+            handler='main.handler'
+            )
+
+        if lambda_function.timeout:
+            aws_cloudwatch.Alarm(self, f"{NAME} max duration / timeout",
+                metric=lambda_function.metric_duration(),
+                evaluation_periods=1,
+                datapoints_to_alarm=1,
+                threshold=lambda_function.timeout.to_milliseconds(),
+                treat_missing_data=aws_cloudwatch.TreatMissingData.IGNORE,
+                alarm_name="{NAME} max duration / timeout"
+            )
 
         # runs at 4 UTC every weekday.
         rule = self.cron(aws_events, aws_events.Schedule.cron(
             minute='0', hour='4', month='*', week_day='MON-FRI', year='*'),)
-        rule.add_target(aws_events_targets.LambdaFunction(lambda_function))
+
+        event = {
+            "folder_name": "/users/ETFCM/RPT",
+            "bucket_name": "qnext.custodian.nbin"
+        }
+        rule.add_target(aws_events_targets.LambdaFunction(lambda_function, retry_attempts=10))
